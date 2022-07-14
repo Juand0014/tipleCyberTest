@@ -25,16 +25,20 @@ export const randomNumber = (quantity: number = 5, maxValue: number = 100): numb
 export const getBanknotes = (quantity: number) =>  {
 	const banknotes = [2000, 1000, 500, 200, 100, 50, 25, 10, 5, 1];
 	const banknotesFound = banknotes.map(banknote => {
-		const cantidad = ~~(quantity / banknote);
+		const amount = ~~(quantity / banknote);
 		quantity = quantity % banknote;
-		return { cantidad, banknote };
-	}).filter(banknote => banknote.cantidad > 0);
-	return banknotesFound;
+		return { amount, banknote };
+	}).filter(banknote => banknote.amount > 0);
+
+	return banknotesFound.reduce((acc: string[], curr) => {
+		acc.push(curr.amount + " of " + curr.banknote);
+		return acc;
+	}, []);
 }
 
 export const primeNumbers = (quantity: number = 9): number[] => {
 	let primeNumbers: number[] = [];
-	let i: number = 2;
+	let i: number = 1;
 	while (primeNumbers.length < quantity) {
 			if (isPrime(i)) {
 					primeNumbers.push(i);

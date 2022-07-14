@@ -13,9 +13,6 @@ import SettingsEthernetIcon from '@mui/icons-material/SettingsEthernet';
 import { useNavigate } from 'react-router-dom';
 
 const pages = [{
-	name: 'Home',
-	path: '/'
-	}, {
 		name: 'Coincidence',
 		path: '/coincidence'
 	}, {

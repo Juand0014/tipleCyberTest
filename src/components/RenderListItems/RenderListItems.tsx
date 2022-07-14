@@ -11,12 +11,26 @@ import { principalBoxStyle,formControlStyle,stackStyle,boxBodyStyle} from "../..
 type Props = {
 	defaultFieldValues: FieldsType,
 	services: Function,
-	initialValueProp: number | string | number[],
-	title: string,
+	initialValueProp?: number | string | number[],
+	title?: string,
 	withSearch?: boolean,
+	children?: JSX.Element;
+	withChildren?: boolean;
+	withButtonReset?: boolean;
+	withTitle?: boolean;
 }
 
-export const RenderListItems = <T extends Props> ({ defaultFieldValues, services, initialValueProp, title, withSearch}: T) => {
+export const RenderListItems = <T extends Props> ({ 
+	defaultFieldValues, 
+	services, 
+	initialValueProp, 
+	title, 
+	withSearch, 
+	children, 
+	withChildren,
+	withButtonReset,
+	withTitle
+}: T) => {
 	const initialStateValue: number[] = services(initialValueProp)
 	const [number, setNumber] = useState<number[]>(initialStateValue)
 	const { values, errors, reset, handleChange, handleBlur } =
@@ -26,12 +40,11 @@ export const RenderListItems = <T extends Props> ({ defaultFieldValues, services
 		event.preventDefault(); 
 		setNumber(services(Number(values.quantity || initialValueProp)))
 	}, [values]);
-
 	
 	return (
 		<>
 		{
-			withSearch &&
+			withSearch ?
 			<Box sx={principalBoxStyle}>
         <FormControl sx={formControlStyle}>
           <InputLabel htmlFor="outlined-adornment-quantity">Quantity</InputLabel>
@@ -49,9 +62,7 @@ export const RenderListItems = <T extends Props> ({ defaultFieldValues, services
 					</Stack>
         </FormControl>
     </Box>
-		}
-		{
-			!withSearch && 
+		: !withButtonReset &&
 				<Stack spacing={2} direction="row" sx={stackStyle}>
 					<Button variant="outlined" onClick={handleSubmit} color="success">Reset</Button>
 				</Stack>
@@ -61,7 +72,12 @@ export const RenderListItems = <T extends Props> ({ defaultFieldValues, services
 				? <Alert sx={{
 					width: '50%',
 				}} severity="error">{errors?.quantity}</Alert>
-				: <Lists title={`${title}: ${number.length}`} items={number}/>
+				: <Lists 
+					withChildren={withChildren} 
+					items={number} 
+					withTitle={withTitle} 
+					title={`${title}: ${number.length}`} 
+					children={children}/>
 			}
 		</Box>
 		</>

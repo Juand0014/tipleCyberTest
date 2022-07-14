@@ -1,11 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom"
-import { Coincidence, GetBanknotes, IsPrime, RandomNumber, Home } from "../pages"
+import { Coincidence, GetBanknotes, IsPrime, RandomNumber } from "../pages"
 
 export const mainRoutes = [
-	{
-		path: "/",
-		element: <Home />
-	},
 	{
 		path: "/coincidence",
 		element: <Coincidence />
@@ -24,7 +20,7 @@ export const mainRoutes = [
 	},
 	{
 		path: "/*",
-		element: <Home />
+		element: <Coincidence />
 	}
 ]
 

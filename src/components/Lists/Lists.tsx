@@ -4,33 +4,39 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
 interface Props {
-	title: string;
+	title?: string;
 	items: number[];
+	children?: JSX.Element;
+	withChildren?: boolean;
+	withTitle?: boolean;
 };
 
-export const Lists = memo(<T extends Props>({title, items}: T): JSX.Element => {
+export const Lists = memo(<T extends Props>({title, items, children, withChildren, withTitle = true}: T): JSX.Element => {
   return (
 		<div>
-			<h1>{title}</h1>
-			<List
-				sx={{
-					width: '100%',
-					maxWidth: 360,
-					bgcolor: 'background.paper',
-					position: 'relative',
-					overflow: 'auto',
-					maxHeight: 300,
-					'& ul': { padding: 0 },
-				}}
-			>
-				{
-					items.map((item, index) => (
-						<ListItem key={index}>
-							<ListItemText primary={item} />
-						</ListItem>
-					))
-				}
-			</List>
+			{withTitle && <h1>{title}</h1>}
+			{ !withChildren 
+				? <List
+					sx={{
+						width: '100%',
+						maxWidth: 360,
+						bgcolor: 'background.paper',
+						position: 'relative',
+						overflow: 'auto',
+						maxHeight: 300,
+						'& ul': { padding: 0 },
+					}}
+				>
+					{
+						items.map((item, index) => (
+							<ListItem key={index}>
+								<ListItemText primary={item} />
+							</ListItem>
+						))
+					}
+				</List>
+				: <div>{children}</div>
+			}
 		</div>
   );
 });
