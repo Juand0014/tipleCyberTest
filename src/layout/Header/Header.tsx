@@ -16,8 +16,8 @@ const pages = [{
 	name: 'Home',
 	path: '/'
 	}, {
-		name: 'Concidence',
-		path: '/concidence'
+		name: 'Coincidence',
+		path: '/coincidence'
 	}, {
 		name: 'Get Banknotes',
 		path: '/getBanknotes'
@@ -27,10 +27,7 @@ const pages = [{
 	}, {
 		name: 'Random Number',
 		path: '/randomNumber'
-	}, {
-		name: 'Fibonacci',
-		path: '/fibonacci'
-}];
+	}];
 export const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => setAnchorElNav(event.currentTarget);

@@ -46,7 +46,7 @@ export const primeNumbers = (quantity: number = 9): number[] => {
 
 export const coincidence = (): number[] => {
 	let primesNumbers: number[] = []
-	randomNumber(20, 30).forEach(element => isPrime(element) 
+	randomNumber(499, 500).forEach(element => isPrime(element) 
 		&& primesNumbers.push(element)
 	);
 	const mayorValue = Math.max(...primesNumbers)
