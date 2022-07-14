@@ -12,6 +12,7 @@ const fibonnacciSequence = (quantity: number): number[] => {
 }
 
 export const randomNumber = (quantity: number = 5, maxValue: number = 100): number[] => {
+	if(quantity === 0) quantity = 5;
 	const numbers: number[] = [];
 	for (let i = 0; i < quantity; i++) {
 		const number: number = Math.floor(Math.random() * maxValue) + 1;
