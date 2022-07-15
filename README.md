@@ -3,7 +3,7 @@
 ## In case you don't have Docker
 
 The application requires execute the "npm i(nstall)" command (it's assumed that the system has Node.js LTS)
-to install dependencies and "npm start".
+to install dependencies and "npm run dev".
 
 ## In case you have Docker
 
